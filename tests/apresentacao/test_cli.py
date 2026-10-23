@@ -96,3 +96,20 @@ class TestProximoNumeroDeVersao:
     def test_pasta_inexistente_comeca_na_versao_1(self, tmp_path):
         # Arrange / Act / Assert
         assert proximo_numero_de_versao(tmp_path / "nao_existe") == 1
+
+    def test_usa_o_maior_numero_existente_e_nao_a_quantidade_de_arquivos(self, tmp_path):
+        # Arrange
+        pasta = tmp_path / "publicado"
+        pasta.mkdir()
+        (pasta / "versao_0002.csv").write_text("x", encoding="utf-8")
+
+        # Act / Assert
+        assert proximo_numero_de_versao(pasta) == 3
+
+    def test_pasta_vazia_comeca_na_versao_1(self, tmp_path):
+        # Arrange
+        pasta = tmp_path / "publicado"
+        pasta.mkdir()
+
+        # Act / Assert
+        assert proximo_numero_de_versao(pasta) == 1
