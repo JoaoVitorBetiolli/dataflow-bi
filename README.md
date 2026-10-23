@@ -38,7 +38,7 @@ Publicar uma carga válida (dados fictícios em `exemplos/`):
 python -m dataflow exemplos/carga_valida.csv --fonte SAP --inicio 2026-09-01 --fim 2026-09-30 --responsavel marina
 ```
 
-Saída esperada: `Versao 1 publicada com 3 registros: publicado/versao_0001.csv`.
+Saída esperada: `Versao 1 publicada com 3 registros: publicado/versao_0001.csv` (no Windows o separador aparece como `publicado\versao_0001.csv`).
 
 Carga com problemas (duplicidade, campo vazio e data fora do período):
 
