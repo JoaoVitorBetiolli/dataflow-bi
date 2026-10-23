@@ -42,7 +42,12 @@ def montar_parser() -> argparse.ArgumentParser:
 def proximo_numero_de_versao(diretorio: Path) -> int:
     if not diretorio.exists():
         return 1
-    return len(list(diretorio.glob("versao_*.csv"))) + 1
+    numeros = [
+        int(sufixo)
+        for arquivo in diretorio.glob("versao_*.csv")
+        if (sufixo := arquivo.stem.removeprefix("versao_")).isdigit()
+    ]
+    return max(numeros, default=0) + 1
 
 
 def relatar(resultado: ResultadoExecucao) -> int:
